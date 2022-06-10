@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../model/chat_model.dart';
@@ -31,7 +32,20 @@ class _HomePageState extends State<HomePage> {
         title: const Text('Chat'),
         actions: [IconButton(onPressed: () {}, icon: Icon(Icons.search))],
       ),
-      drawer: const Drawer(child: SafeArea(child: Text('Chat Apps'))),
+      drawer: Drawer(
+          child: SafeArea(
+              child: Column(
+        children: [
+          Text('Chat Apps'),
+          // ignore: deprecated_member_use
+          RaisedButton(
+            onPressed: () {
+              FirebaseAuth.instance.signOut();
+            },
+            child: Text('Logout'),
+          ),
+        ],
+      ))),
       // ignore: deprecated_member_use
       floatingActionButton: FlatButton(
         onPressed: () {},
